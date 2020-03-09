@@ -1,0 +1,9 @@
+commonLabels:
+  app: artifactcart
+
+namespace:
+  artifactcart-jp
+
+resources:
+  - namespace.yaml
+  - web_deployment.yaml

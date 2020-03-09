@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: artifactcart-web
+  labels:
+    role: web
+spec:
+  selector:
+    matchLabels:
+      app: artifactcart
+      role: web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: artifactcart
+        role: web
+    spec:
+      containers:
+        - name: artifactcart-web
+          image: artifactcart-web
+          ports:
+            - containerPort: 80
+              name: nginx-port

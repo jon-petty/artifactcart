@@ -1,0 +1,15 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+metadata:
+  name: artifactcart-jp
+build:
+  artifacts:
+  - image: artifactcart-web
+    context: artifactcart/.
+    sync:
+      infer:
+        - artifactcart/**
+deploy:
+  kustomize:
+    paths:
+      - config/kubernetes/.
