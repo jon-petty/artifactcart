@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: web-ingress
+spec:
+  rules:
+    - host: artifactcart.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: artifactcart-web
+              servicePort: nginx-port

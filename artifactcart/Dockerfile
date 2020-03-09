@@ -16,6 +16,6 @@ COPY artifactcart /usr/src/app/artifactcart
 
 WORKDIR /usr/src/app/artifactcart
 
-#RUN npm install --save-dev
+RUN npm install
 
 EXPOSE 80
