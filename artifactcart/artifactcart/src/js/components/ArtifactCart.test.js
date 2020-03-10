@@ -6,20 +6,58 @@ import ArtifactCart from "./ArtifactCart";
 
 let container = null;
 beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
+    // Create a fresh container each test
+    container = document.createElement("div");
+    document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
+    // Cleanup after each test
+    unmountComponentAtNode(container);
+    container.remove();
+    container = null;
 });
 
-it("renders Hello World", () => {
-  act(() => {
-    render(<ArtifactCart />, container);
-  });
-  expect(container.textContent).toBe("Hello World");
+it("Adds items to the cart", () => {
+    act(() => {
+        render(<ArtifactCart />, container);
+    });
+
+    expect(container.textContent).not.toContain("Sample Item 1");
+
+    let button = document.querySelector("[data-additem=button]");
+
+    act(() => {
+        button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+
+    expect(container.textContent).toContain("Sample Item 1");
+
+    act(() => {
+        button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+
+    expect(container.textContent).toContain("Sample Item 2");
+});
+
+it("Updates the cart total", () => {
+    act(() => {
+        render(<ArtifactCart />, container);
+    });
+
+    expect(container.textContent).toContain("Total Items: 0");
+
+    let button = document.querySelector("[data-additem=button]");
+
+    act(() => {
+        button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+
+    expect(container.textContent).toContain("Total Items: 1");
+
+    act(() => {
+        button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+
+    expect(container.textContent).toContain("Total Items: 2");
 });

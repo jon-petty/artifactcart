@@ -6,6 +6,8 @@ namespace:
 
 resources:
   - namespace.yaml
+  - selenium_deployment.yaml
+  - selenium_service.yaml
   - web_deployment.yaml
   - web_ingress.yaml
   - web_service.yaml

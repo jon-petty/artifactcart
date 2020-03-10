@@ -16,6 +16,9 @@ COPY artifactcart /usr/src/app/artifactcart
 
 WORKDIR /usr/src/app/artifactcart
 
-RUN npm install
+RUN npm install \
+    && npm run build \
+    && cp -r dist/* /usr/share/nginx/html/. \
+    && cp src/html/artifactcart.html /usr/share/nginx/html/.
 
 EXPOSE 80

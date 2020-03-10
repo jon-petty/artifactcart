@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: artifactcart-selenium
+  labels:
+    role: selenium
+spec:
+  selector:
+    matchLabels:
+      app: artifactcart
+      role: selenium
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: artifactcart
+        role: selenium
+    spec:
+      containers:
+        - name: selenium
+          image: selenium/standalone-firefox
+          ports:
+            - containerPort: 4444
+              name: selenium-port1
+            - containerPort: 5900
+              name: selenium-port2
